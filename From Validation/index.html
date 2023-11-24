@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <div class="main">
+        <form id="registerForm" action="#" method="post">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" required><br><br>
+    
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option>Male</option>
+                <option>Feamle</option>
+                <option>Other</option>
+            </select><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone"  required><br><br>
+        
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            
+            if (fullname.length < 5) {
+                alert("Name must be at least 5 characters long");
+                return;
+            }
+
+            if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+                alert("Enter a valid email address");
+                return;
+            }
+
+            if (phone.length !== 10 || isNaN(phone)) {
+                alert("Enter a valid 10-digit phone number");
+                return;
+            }
+
+            if (password.length < 8 || password.toLowerCase() === 'password' || password.toLowerCase() === fullname.toLowerCase()) {
+                alert("Password should be at least 8 characters long and not 'password' or the user's name");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+            
+            alert("Form has been validated successfully!");
+            
+        });
+    </script>
+</body>
+</html>
